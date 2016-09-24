@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Rock Paper Scissor: Set a timer and play the computer - See who wins the most rounds!</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Play Rock Paper Scissors against our bot to see who can win the most times.">
+    <meta name="author" content="Natalie Sharpe">
+    <meta name="keywords" content="rock paper scissors, rock, paper, scissors, game, play, against, bot, robot, win">
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400, 600' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='rps.css'/>
+  </head>
+  <body>
+   <div class="jumbotron">
+      <div class="container">  
+        <div class="main">
+          <h1>Rock Paper Scissors</h1>
+          <form>
+            Minutes: <input type="number" name="min">
+            Seconds: <input type="number" name="sec">
+            <input class="btn-start" type="submit" value="Start">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <span class="score-col">
+      <aside class="scores">
+        <ul>
+          <li>Wins</li>
+          <li>Losses</li>
+          <li>Draws</li>
+        </ul>
+      </aside>
+    </span>
+
+    <div class="supporting">
+      <div class="col">
+        <a class="btn-default">Rock</a>
+      </div>
+      <div class="col">
+        <a class="btn-default">Paper</a>
+      </div>
+      <div class="col">
+        <a class="btn-default">Scissors</a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <script type="text/javascript" src="rps.js"></script>
+  </body>
+</html>
