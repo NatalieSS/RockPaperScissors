@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <title>Rock Paper Scissor: Set a timer and play the computer - See who wins the most rounds!</title>
+     <title>Rock Paper Scissors: Set a timer and play the computer - See who wins the most rounds!</title>
     <meta charset="UTF-8">
     <meta name="description" content="Play Rock Paper Scissors against our bot to see who can win the most times.">
     <meta name="author" content="Natalie Sharpe">
@@ -12,28 +12,16 @@
     <link rel='stylesheet' href='rps.css'/>
   </head>
   <body>
-   <div class="jumbotron">
-      <div class="container">  
-        <div class="main">
-          <h1>Rock Paper Scissors</h1>
-          <form>
-            Minutes: <input type="number" name="min">
-            Seconds: <input type="number" name="sec">
-            <input class="btn-start" type="submit" value="Start">
-          </form>
-        </div>
+    <span class="container">  
+      <div class="main">
+        <h1>Rock Paper Scissors</h1>
+        <form>
+          Minutes: <input type="number" name="min">
+          Seconds: <input type="number" name="sec">
+          <input class="btn-start" type="submit" value="Start">
+        </form>
+        <div class="timer">Timer</div>
       </div>
-    </div>
-
-    <span class="score-col">
-      <aside class="scores">
-        <ul>
-          <li>Wins</li>
-          <li>Losses</li>
-          <li>Draws</li>
-        </ul>
-      </aside>
-    </span>
 
     <div class="supporting">
       <div class="col">
@@ -47,6 +35,17 @@
       </div>
       <div class="clearfix"></div>
     </div>
+  </span>
+
+    <span class="score-col">
+      <aside class="scores">
+        <ul>
+          <li>Wins</li>
+          <li>Losses</li>
+          <li>Draws</li>
+        </ul>
+      </aside>
+    </span>
 
     <script type="text/javascript" src="rps.js"></script>
   </body>
