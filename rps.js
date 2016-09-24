@@ -12,8 +12,6 @@ $(document).ready(function() {
 // 			});
 
 
-
-
 // when user submits time form, set the timer for that time and begin 
 // countdown, which will stop at zero
 
@@ -23,13 +21,12 @@ $(document).ready(function() {
 
 
 
+// when user chooses r, p, or s, change btn background color and set userChoice
 var userChoice;
 var botChoice;
 
-// when user chooses r, p, or s, change btn background color and set userChoice
-
-
 var userChooses = function() {
+
   $('#rock').click(function() {
     userChoice == "rock";
   });
