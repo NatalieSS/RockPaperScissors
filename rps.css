@@ -53,7 +53,7 @@ html, body {
   text-transform: uppercase;
 }
 
-.btn-default {
+.btn-choose {
   border-style: solid;
   border-width: 1px;
   border-color: #333333;
@@ -116,7 +116,7 @@ html, body {
   text-decoration: none;
   text-transform: uppercase;  
   display: block;
-  margin-bottom: 20px; 
+  margin: 40px 0px 20px 20px;
   background-color: none; 
   text-align: center;
 }
