@@ -177,17 +177,15 @@ var updateScores = function() {
     };
   }
 
-  $("#wins").html(drawCount);
-  $("#losses").html(drawCount);
+  $("#wins").html(winCount);
+  $("#losses").html(lossCount);
   $("#draws").html(drawCount);
 
 };
 
-// when timer reaches 0, stop countdown, disable play, and display who won
+// when timer reaches 0, stop countdown, disable play, and display who won in a modal
 
 // clicking restart button restarts timer and zeroes out the scores
 
 
-// $(".btn-choose").on("click", userChooses());
-// }
 });
