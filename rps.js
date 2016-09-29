@@ -32,7 +32,7 @@ $(".start-timer").submit(function(e) {
     // convert min and sec to just sec
     var numericExpression = /^[0-9]+$/;
     if (!userMinStr.match(numericExpression) || !userSecStr.match(numericExpression)){
-      alert("Please enter a number")
+      alert("Please enter a number for both minutes and seconds.")
     } else {
       var userMinNum = parseInt(userMinStr);
       var userSecNum = parseInt(userSecStr);
@@ -92,16 +92,20 @@ $(".start-timer").submit(function(e) {
       if (w > l) {
         $("#verdict").append("You won the game!");
         console.log("win");
-        } else if (l > w) {
+      } else if (l > w) {
         $("#verdict").append("You lost the game. Better luck next time!");
         console.log("loss");
-        } else {
+      } else {
         $("#verdict").append("You and the computer tied. Everyone's a winner!");
         console.log("tie");
-        };
+      };
 
-      $("#gameOverModal").css("display", "block");;
-    };
+      $("#gameOverModal").css("display", "block");
+
+      $(".close").click(function() {
+        $("#gameOverModal").css("display", "none");
+      });
+    }
       // *********************************************************************************** disable all play buttons
     
 }, 1000);
