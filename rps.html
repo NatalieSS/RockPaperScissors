@@ -15,21 +15,22 @@
 <!--     <span class="container">   -->
     <div class="main">
       <h1>Rock Paper Scissors</h1>
-      <form>
-        Minutes: <input type="number" name="min">
-        Seconds: <input type="number" name="sec">
+      <form class="start-timer">
+        Minutes: <input id="userMin" type="number" name="min">
+        Seconds: <input id="userSec" type="number" name="sec">
         <input class="btn-start" type="submit" value="Start">
       </form>
-      <div class="timer">
-        Timer
+      <div class="timer-area">
+        <span>Time left: </span>
+        <span id="time-left"></span>
       </div>
     </div>
 
     <aside class="scores">
       <ul>
-        <li>Wins</li>
-        <li>Losses</li>
-        <li>Draws</li>
+        <li><span id="wins">0</span> Wins</li>
+        <li><span id="losses">0</span> Losses</li>
+        <li><span id="draws">0</span> Draws</li>
       </ul>
     </aside>
 
@@ -41,7 +42,7 @@
         <!--    <div class="clearfix"></div> -->
       </span>
       <span class="col bot-display">
-        Computer chooses: ...
+        Computer chooses: 
       </span>
       <button class="btn-restart">Restart</button>
     </div>
