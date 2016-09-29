@@ -110,7 +110,7 @@ var botChooses = function() {
   console.log("bot: " + botChoice);
 
 // display bot choice for a moment
-$("<span />",{ style:"display:none" })
+$("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-size: 30px" })
     .html(botChoice)
     .appendTo($(".bot-display"))
     .fadeIn("fast", 
@@ -126,7 +126,7 @@ $("<span />",{ style:"display:none" })
 
 // add <span> under bot choice display saying who won round one second after bot choice appears saying who won this round,
 // have this fade out simultaneously with bot choice
-$("<div />",{ style:"display:none, top: 10px, font-weight: 600" })
+$("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size: 40px" })
     .html(roundWinner)
     .appendTo($(".bot-display"))
     .fadeIn("fast", 
@@ -156,7 +156,7 @@ var updateScores = function() {
       roundWinner = "You win!";
       winCount ++;
     } else {
-      roundWinner = "You lose.";
+      roundWinner = "You lose :(";
       lossCount ++;
     };
   } else if (userChoice == "paper") {
@@ -164,7 +164,7 @@ var updateScores = function() {
       roundWinner = "You win!"
       winCount ++;
     } else {
-      roundWinner = "You lose."
+      roundWinner = "You lose :("
       lossCount ++;
     };
   } else if (userChoice == "scissors") {
@@ -172,7 +172,7 @@ var updateScores = function() {
       roundWinner = "You win!"
       winCount ++;
     } else {
-      roundWinner = "You lose."
+      roundWinner = "You lose :("
       lossCount ++;
     };
   }
