@@ -16,13 +16,20 @@
     <div class="main">
       <h1>Rock Paper Scissors</h1>
       <form class="start-timer">
-        Minutes: <input id="userMin" type="number" name="min">
-        Seconds: <input id="userSec" type="number" name="sec">
+        Minutes: <input id="userMin" name="min">
+        Seconds: <input id="userSec" name="sec">
         <input class="btn-start" type="submit" value="Start">
       </form>
       <div class="timer-area">
         <span>Time left: </span>
         <span id="time-left"></span>
+      </div>
+    </div>
+
+    <div id="gameOverModal" class="modal">
+      <div class="modal-content">
+      <span class="close"></span>
+      <p id="verdict"></p>
       </div>
     </div>
 

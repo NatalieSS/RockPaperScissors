@@ -23,6 +23,7 @@ $(".start-timer").submit(function(e) {
 
   // check to be sure user input is valid
   userMinStr = document.getElementById("userMin").value;
+  console.log(userMinStr);
   userSecStr = document.getElementById("userSec").value;
 
   if(userMinStr.length == 0 && userSecStr == 0){
@@ -73,17 +74,37 @@ $(".start-timer").submit(function(e) {
     }
 
     $("#time-left").html(minutes + ":" + seconds);
-    
+
     // warn user with popup when 10 secs left
     if (minutes == 0 && seconds == 10) {
       // *********************************************************************************** add modal warning for 10 sec
-    }
+    };
 
-    // stop count down at 00:00
+    // stop count down at 00:00 and display who won in a modal
     if (minutes == 0 && seconds == 0) {
       clearInterval(interval);
-    }
-}, 1000)
+
+    // fill modal with result
+      var w = document.getElementById("wins").textContent;
+      var l = document.getElementById("losses").textContent;
+      console.log(w, l);
+
+      if (w > l) {
+        $("#verdict").append("You won the game!");
+        console.log("win");
+        } else if (l > w) {
+        $("#verdict").append("You lost the game. Better luck next time!");
+        console.log("loss");
+        } else {
+        $("#verdict").append("You and the computer tied. Everyone's a winner!");
+        console.log("tie");
+        };
+
+      $("#gameOverModal").css("display", "block");;
+    };
+      // *********************************************************************************** disable all play buttons
+    
+}, 1000);
 });
 
 // when user chooses r, p, or s, change btn background color and set userChoice
@@ -181,11 +202,8 @@ var updateScores = function() {
   $("#losses").html(lossCount);
   $("#draws").html(drawCount);
 
-};
-
-// when timer reaches 0, stop countdown, disable play, and display who won in a modal
-
 // clicking restart button restarts timer and zeroes out the scores
 
 
+}
 });
