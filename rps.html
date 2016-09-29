@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <title>Rock Paper Scissors: Set a timer and play the computer - See who wins the most rounds!</title>
+    <title>Rock Paper Scissors: Set a timer and play the computer - See who wins the most rounds!</title>
     <meta charset="UTF-8">
     <meta name="description" content="Play Rock Paper Scissors against our bot to see who can win the most times.">
     <meta name="author" content="Natalie Sharpe">
@@ -12,36 +12,44 @@
     <link rel='stylesheet' href='rps.css'/>
   </head>
   <body>
-    <span class="container">  
-      <div class="main">
-        <h1>Rock Paper Scissors</h1>
-        <form>
-          Minutes: <input type="number" name="min">
-          Seconds: <input type="number" name="sec">
-          <input class="btn-start" type="submit" value="Start">
-        </form>
-        <div class="timer">Timer</div>
+<!--     <span class="container">   -->
+    <div class="main">
+      <h1>Rock Paper Scissors</h1>
+      <form>
+        Minutes: <input type="number" name="min">
+        Seconds: <input type="number" name="sec">
+        <input class="btn-start" type="submit" value="Start">
+      </form>
+      <div class="timer">
+        Timer
       </div>
-      <div class="supporting">
-        <button id="rock" class="btn-choose">Rock</button>
-        <button id="paper" class="btn-choose">Paper</button>
-        <button id="scissors" class="btn-choose">Scissors</button>
-   <!--    <div class="clearfix"></div> -->
-      </div>
-      <span>Computer chooses: ...</span>
-    </span>
+    </div>
 
-    <button class="btn-restart">Restart</button>
+    <aside class="scores">
+      <ul>
+        <li>Wins</li>
+        <li>Losses</li>
+        <li>Draws</li>
+      </ul>
+    </aside>
 
-    <span class="score-col">
-      <aside class="scores">
-        <ul>
-          <li>Wins</li>
-          <li>Losses</li>
-          <li>Draws</li>
-        </ul>
-      </aside>
-    </span>
+    <div class="supporting">
+      <span class="col user-display">
+        <button id="rock" class="btn-choose">Rock</button><br>
+        <button id="paper" class="btn-choose">Paper</button><br>
+        <button id="scissors" class="btn-choose">Scissors</button><br>
+        <!--    <div class="clearfix"></div> -->
+      </span>
+      <span class="col bot-display">
+        Computer chooses: ...
+      </span>
+      <button class="btn-restart">Restart</button>
+    </div>
+
+    <!-- <span class="score-col"> -->
+      
+<!--     </span> -->
+<!--     </span> -->
 
     <script type="text/javascript" src="rps.js"></script>
   </body>

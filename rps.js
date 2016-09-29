@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
-//     //button hover visual cue
+ //button hover visual cue
  
-// 	$("col a").hover(function(){
-// 		event.preventDefault();
-// 			$(this).css("color", "green");
-// 		 	$(this).addClass('active');
-// 		},function(){
-// 				$(this).css("color", "black");
-// 		    $(this).removeClass('active');
-// 			});
+	$(".btn-start").hover(function(){
+		event.preventDefault();
+			$(this).css("background-color", "yellow");
+		 	$(this).addClass('active');
+		},function(){
+				$(this).css("background-color", "#7DDA6A");
+		    $(this).removeClass('active');
+			});
 
 
 // when user submits time form, set the timer for that time and begin 
@@ -25,20 +25,11 @@ $(document).ready(function() {
 var userChoice;
 var botChoice;
 
-var userChooses = function() {
-
-  $('#rock').click(function() {
-    userChoice == "rock";
-  });
-  $('#paper').click(function() {
-    userChoice == "paper";
-  });
-  $('#scissors').click(function() {
-    userChoice == "scissors";
-  });
-  console.log(userChoice);
+$('.btn-choose').on('click', function() {
+  userChoice = this.id;
+  console.log("user: " + userChoice);
   botChooses();
-};
+});
 
 // also trigger computer random choice and display that choice
 	// on userChoice definition...
@@ -51,6 +42,7 @@ var botChooses = function() {
   } else {
   	botChoice = "scissors";
   }
+  console.log("bot: " + botChoice)
   updateScores();
 }
 
@@ -59,22 +51,22 @@ var botChooses = function() {
 // after bot chooses, update scores
 var updateScores = function() {
   if (userChoice == botChoice) {
-    alert ("Tie!");
+    alert ("Computer chose " + userChoice + ". Tie!");
   } else if (userChoice == "rock") {
     if (botChoice == "scissors") {
-      alert ("You win!");
+      alert ("Computer chose scissors. You win!");
     } else {
       alert ("You lose.");
     };
   } else if (userChoice == "paper") {
     if (botChoice == "rock") {
-      alert ("You win!");
+      alert ("Computer chose rock. You win!");
     } else {
       alert ("You lose.");
     };
   } else if (userChoice == "scissors") {
     if (botChoice == "paper") {
-      alert ("You win!");
+      alert ("Computer chose paper. You win!");
     } else {
       alert ("You lose");
     };
@@ -87,5 +79,5 @@ var updateScores = function() {
 // clicking restart button restarts timer and zeroes out the scores
 
 
-$('.btn-choose').on('click', userChooses());
+// $('.btn-choose').on('click', userChooses());
 });
