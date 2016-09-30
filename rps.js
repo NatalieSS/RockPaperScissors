@@ -29,11 +29,19 @@ $(document).ready(function() {
 
 // when user submits time form, set the timer for that time and begin countdown
 // choices only become possible once countdown starts
-var userMin;
-var userSec;
-var startTimeSec;
 
-$(".start-timer").submit(function(e) {
+// var userMin;
+// var userSec;
+// var startTimeSec;
+
+$("#btn-restart").click(function() {
+  userMinStr = document.getElementById("userMin").value;
+  userSecStr = document.getElementById("userSec").value;
+
+  console.log(userMinStr, userSecStr);
+ });
+
+$("#start-timer").submit(function(e) {
   // check to be sure user input is valid
   userMinStr = document.getElementById("userMin").value;
   userSecStr = document.getElementById("userSec").value;
@@ -57,7 +65,6 @@ $(".start-timer").submit(function(e) {
     startTimeSec = (userMinNum * 60) + userSecNum;
 
     var timerArr = [startTimeSec, userMinNum, userSecNum];
-    console.log(timerArr)
     e.preventDefault();
     // return timerArr;
     }
@@ -134,6 +141,8 @@ $(".start-timer").submit(function(e) {
     }
       // *********************************************************************************** disable all play buttons
     
+
+
 }, 1000);
 });
 
@@ -205,7 +214,10 @@ $("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-siz
     .fadeIn("fast", 
       function(){
         var el = $(this);
-        setTimeout(function(){
+        if ($(this).text().length > 0) {
+          $(this).text("");
+        }
+         setTimeout(function(){
           el.fadeOut("fast",
             function(){
               $(this).remove();
@@ -221,6 +233,9 @@ $("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size
     .fadeIn("fast", 
       function(){
         var el = $(this);
+        if ($(this).text().length > 0) {
+          $(this).text("");
+        }
         setTimeout(function(){
           el.fadeOut("fast",
             function(){
