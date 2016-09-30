@@ -27,13 +27,7 @@ $(document).ready(function() {
       $(this).css("background-color", "white");
     });
 
-// when user submits time form, set the timer for that time and begin countdown
-// choices only become possible once countdown starts
-
-// var userMin;
-// var userSec;
-// var startTimeSec;
-
+// clicking restart button restarts timer with old/current input and zeroes out the scores
 $("#btn-restart").click(function() {
   userMinStr = document.getElementById("userMin").value;
   userSecStr = document.getElementById("userSec").value;
@@ -41,6 +35,8 @@ $("#btn-restart").click(function() {
   console.log(userMinStr, userSecStr);
  });
 
+// when user submits timer form, set the timer for that time and begin countdown
+// choices only become possible once countdown starts
 $("#start-timer").submit(function(e) {
   // check to be sure user input is valid
   userMinStr = document.getElementById("userMin").value;
@@ -66,11 +62,10 @@ $("#start-timer").submit(function(e) {
 
     var timerArr = [startTimeSec, userMinNum, userSecNum];
     e.preventDefault();
-    // return timerArr;
     }
     }
 
-  // start button becomes unclickable unless page is refreshed
+  // start button becomes unclickable unless page is refreshed, other buttons become clickable
   document.getElementById("btn-start").disabled = true;
   document.getElementById("rock").disabled = false;
   document.getElementById("paper").disabled = false;
@@ -139,9 +134,6 @@ $("#start-timer").submit(function(e) {
         $("#gameOverModal").css("display", "none");
       });
     }
-      // *********************************************************************************** disable all play buttons
-    
-
 
 }, 1000);
 });
@@ -210,7 +202,7 @@ var updateScores = function() {
 // display bot choice for a moment
 $("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-size: 20px" })
     .html(botChoice)
-    .appendTo($(".bot-display"))
+    .appendTo($(".bot-d"))
     .fadeIn("fast", 
       function(){
         var el = $(this);
@@ -222,29 +214,27 @@ $("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-siz
             function(){
               $(this).remove();
             });
-        }, 500);
+        }, 1000);
     });
 
 // add <span> under bot choice display saying who won round one second after bot choice appears saying who won this round,
 // have this fade out simultaneously with bot choice
-$("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size: 30px" })
-    .html(roundWinner)
-    .appendTo($(".bot-display"))
-    .fadeIn("fast", 
-      function(){
-        var el = $(this);
-        if ($(this).text().length > 0) {
-          $(this).text("");
-        }
-        setTimeout(function(){
-          el.fadeOut("fast",
-            function(){
-              $(this).remove();
-            });
-        }, 500);
-    }); 
+// $("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size: 30px" })
+//     .html(roundWinner)
+//     .appendTo($(".bot-d"))
+//     .fadeIn("fast", 
+//       function(){
+//         var el = $(this);
+//         if ($(this).text().length > 0) {
+//           $(this).text("");
+//         }
+//         setTimeout(function(){
+//           el.fadeOut("fast",
+//             function(){
+//               $(this).remove();
+//             });
+//         }, 1000);
+//     }); 
   updateScores();
 };
-
-// clicking restart button restarts timer with old/current input and zeroes out the scores
 });

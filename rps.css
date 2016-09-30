@@ -6,12 +6,6 @@ html, body {
   text-transform: uppercase;
 }
 
-/*.container {
-  margin: 0 auto;
-  padding: 0px;
-  display: inline;
-}*/
-
 .main {
   position: relative;
   top: 30px;
@@ -60,10 +54,7 @@ html, body {
   text-decoration: none;
   text-transform: uppercase;  
   display: inline;
-/*  margin: auto;*/
   margin: 0px 0px 20px 20px; 
-/*  text-align: center;*/
-/*  position: relative;*/
   background-color: #FF953D;
 }
 
@@ -130,8 +121,6 @@ html, body {
   letter-spacing: 1.3px;
   text-align: center;
   padding: 10px;
-/*  padding: 10px 20px;
-  text-decoration: none;*/
   text-transform: uppercase;  
 }
 
@@ -179,9 +168,9 @@ i {
   width: 50%;
 }
 
-/*.bot-display {
-  margin-bottom: 10px;
-}*/
+.bot-d {
+  padding-top: 20px;
+}
 
 .modal {
     display: none;
@@ -261,11 +250,6 @@ i {
     display: inline;
   }
 
-/*  #btn-restart {
-    margin: 5px 0px 10px 0px;
-    display: inline;
-  }*/
-
   .timer-area {
     font-weight: 300;
     font-size: 20px;
@@ -286,13 +270,4 @@ i {
   .supporting {
     padding-top: 20px;
   }
-
-/*  .user-display {
-    width: 42%;
-  }
-
-  .bot-display {
-    width: 58%;
-  }
-*/
 }
