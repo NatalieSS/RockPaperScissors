@@ -6,7 +6,7 @@
     <meta name="description" content="Play Rock Paper Scissors against our bot to see who can win the most times.">
     <meta name="author" content="Natalie Sharpe">
     <meta name="keywords" content="rock paper scissors, rock, paper, scissors, game, play, against, bot, robot, win">
-    
+    <script src="https://use.fontawesome.com/f1f28b31bc.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400, 600' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='rps.css'/>
@@ -16,15 +16,22 @@
     <div class="main">
       <h1>Rock Paper Scissors</h1>
       <form class="start-timer">
-        Minutes: <input id="userMin" name="min">
-        Seconds: <input id="userSec" name="sec">
-        <input class="btn-start" type="submit" value="Start">
+        <span class="time-input">Minutes: <input id="userMin" name="min"></span>
+        <span class="time-input">Seconds: <input id="userSec" name="sec"></span>
+        <span class="top-btns">
+          <input id="btn-start" class="start" type="submit" value="Start">
+          <button id="btn-restart" class="start">Restart</button>
+        </span>
       </form>
+<!--       <button id="btn-restart" class="start">Restart</button> -->
+
       <div class="timer-area">
         <span>Time left: </span>
         <span id="time-left"></span>
       </div>
     </div>
+
+    <div class="ten-sec">Ten seconds left!</div>
 
     <div id="gameOverModal" class="modal">
       <div class="modal-content">
@@ -43,15 +50,20 @@
 
     <div class="supporting">
       <span class="col user-display">
-        <button id="rock" class="btn-choose">Rock</button>
-        <button id="paper" class="btn-choose">Paper</button>
-        <button id="scissors" class="btn-choose">Scissors</button>
+        <button id="rock" class="btn-choose">
+          <i class="fa fa-hand-rock-o" aria-hidden="true"></i>Rock
+        </button><br>
+        <button id="paper" class="btn-choose">
+          <i class="fa fa-hand-paper-o" aria-hidden="true"></i>Paper
+        </button><br>
+        <button id="scissors" class="btn-choose">
+          <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>Scissors
+        </button>
         <!--    <div class="clearfix"></div> -->
       </span>
       <span class="col bot-display">
-        Computer chooses: 
+        Computer chooses:<br>
       </span>
-      <button class="btn-restart">Restart</button>
     </div>
 
     <!-- <span class="score-col"> -->

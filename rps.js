@@ -1,16 +1,31 @@
 $(document).ready(function() {
 
- //button hover visual cue
- 
-	$(".btn-start").hover(function(){
-		event.preventDefault();
-			$(this).css("background-color", "yellow");
-		 	$(this).addClass("active");
-		},function(){
-				$(this).css("background-color", "#7DDA6A");
-		    $(this).removeClass("active");
-			});
+  document.getElementById("rock").disabled = true;
+  document.getElementById("paper").disabled = true;
+  document.getElementById("scissors").disabled = true;
+  document.getElementById("btn-restart").disabled = true;
 
+  // button hover visual cues
+	$("#btn-start").hover(function(){
+		event.preventDefault();
+			$(this).css("background-color", "#6FB560");
+		}, function(){
+			$(this).css("background-color", "#9AD78D");
+		});
+
+  $("#btn-restart").hover(function(){
+    event.preventDefault();
+      $(this).css("background-color", "#F47811");
+    }, function(){
+      $(this).css("background-color", "#FF953D");
+    });
+
+  $(".btn-choose").hover(function(){
+    event.preventDefault();
+      $(this).css("background-color", "#7AB2DD");
+    }, function(){
+      $(this).css("background-color", "white");
+    });
 
 // when user submits time form, set the timer for that time and begin countdown
 // choices only become possible once countdown starts
@@ -19,11 +34,8 @@ var userSec;
 var startTimeSec;
 
 $(".start-timer").submit(function(e) {
-  // ************************************************* start button should now become unclickable unless page is refreshed
-
   // check to be sure user input is valid
   userMinStr = document.getElementById("userMin").value;
-  console.log(userMinStr);
   userSecStr = document.getElementById("userSec").value;
 
   if(userMinStr.length == 0 && userSecStr == 0){
@@ -34,24 +46,33 @@ $(".start-timer").submit(function(e) {
     if (!userMinStr.match(numericExpression) || !userSecStr.match(numericExpression)){
       alert("Please enter a number for both minutes and seconds.")
     } else {
-      var userMinNum = parseInt(userMinStr);
-      var userSecNum = parseInt(userSecStr);
- 
-      // ************************* handle edge case of secs being 60 or more - amend userMinNum and userSecNum accordingly
+    var userMinNum = parseInt(userMinStr);
+    var userSecNum = parseInt(userSecStr);
 
-      startTimeSec = (userMinNum * 60) + userSecNum;
-
-      var timerArr = [startTimeSec, userMinNum, userSecNum];
-      console.log(timerArr);
-      e.preventDefault();
-      // return timerArr;
+    // handle edge case of one-digit secs by prepending a 0
+    if (userSecNum < 10 && length.userSecNum != 2) {
+      userSecNum = "0" + userSecNum;
     }
-  }
+
+    startTimeSec = (userMinNum * 60) + userSecNum;
+
+    var timerArr = [startTimeSec, userMinNum, userSecNum];
+    console.log(timerArr)
+    e.preventDefault();
+    // return timerArr;
+    }
+    }
+
+  // start button becomes unclickable unless page is refreshed
+  document.getElementById("btn-start").disabled = true;
+  document.getElementById("rock").disabled = false;
+  document.getElementById("paper").disabled = false;
+  document.getElementById("scissors").disabled = false;
+  document.getElementById("btn-restart").disabled = false;
 
   // begin countdown display: set time equal to whatever minutes and seconds user has entered
   $("#time-left").append(userMinNum + ":" + userSecNum);
   $(".timer-area").css("display", "block");
-  // ******************************** handle edge case of one-digit secs by prepending a 0 - at start and during countdown
 
   // start counting down
   var interval = setInterval(function() {
@@ -78,27 +99,31 @@ $(".start-timer").submit(function(e) {
 
     // warn user with popup when 10 secs left
     if (minutes == 0 && seconds == 10) {
-      // *********************************************************************************** add warning div for 10 sec
+      $(".ten-sec").css("display", "block");
+      function hideTenSec(){
+        $(".ten-sec").css("display", "none");
+      }
+      setTimeout(hideTenSec, 1500);
     };
 
     // stop count down at 00:00 and display who won in a modal
     if (minutes == 0 && seconds == 0) {
       clearInterval(interval);
 
+      document.getElementById("rock").disabled = true;
+      document.getElementById("paper").disabled = true;
+      document.getElementById("scissors").disabled = true;
+
     // fill modal with result
       var w = document.getElementById("wins").textContent;
       var l = document.getElementById("losses").textContent;
-      console.log(w, l);
 
       if (w > l) {
         $("#verdict").append("You won the game!");
-        console.log("win");
       } else if (l > w) {
         $("#verdict").append("You lost the game. Better luck next time!");
-        console.log("loss");
       } else {
         $("#verdict").append("You and the computer tied. Everyone's a winner!");
-        console.log("tie");
       };
 
       $("#gameOverModal").css("display", "block");
@@ -119,7 +144,6 @@ var roundWinner;
 
 $(".btn-choose").on("click", function() {
   userChoice = this.id;
-  console.log("user: " + userChoice);
   botChooses();
 });
 
@@ -133,40 +157,6 @@ var botChooses = function() {
   } else {
   	botChoice = "scissors";
   }
-  console.log("bot: " + botChoice);
-
-// display bot choice for a moment
-$("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-size: 30px" })
-    .html(botChoice)
-    .appendTo($(".bot-display"))
-    .fadeIn("fast", 
-      function(){
-        var el = $(this);
-        setTimeout(function(){
-          el.fadeOut("fast",
-            function(){
-              $(this).remove();
-            });
-        }, 500);
-    })
-
-// add <span> under bot choice display saying who won round one second after bot choice appears saying who won this round,
-// have this fade out simultaneously with bot choice
-$("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size: 40px" })
-    .html(roundWinner)
-    .appendTo($(".bot-display"))
-    .fadeIn("fast", 
-      function(){
-        var el = $(this);
-        setTimeout(function(){
-          el.fadeOut("fast",
-            function(){
-              $(this).remove();
-            });
-        }, 250);
-    }); 
-  updateScores();
-};
 
 // after bot chooses, update scores
 var updateScores = function() {
@@ -206,9 +196,40 @@ var updateScores = function() {
   $("#wins").html(winCount);
   $("#losses").html(lossCount);
   $("#draws").html(drawCount);
+};
 
-// clicking restart button restarts timer and zeroes out the scores
+// display bot choice for a moment
+$("<span />",{ style:"display:none; margin-top: 10px; font-weight: 500; font-size: 20px" })
+    .html(botChoice)
+    .appendTo($(".bot-display"))
+    .fadeIn("fast", 
+      function(){
+        var el = $(this);
+        setTimeout(function(){
+          el.fadeOut("fast",
+            function(){
+              $(this).remove();
+            });
+        }, 500);
+    });
 
+// add <span> under bot choice display saying who won round one second after bot choice appears saying who won this round,
+// have this fade out simultaneously with bot choice
+$("<div />",{ style:"display:none; margin-top: 20px; font-weight: 600; font-size: 30px" })
+    .html(roundWinner)
+    .appendTo($(".bot-display"))
+    .fadeIn("fast", 
+      function(){
+        var el = $(this);
+        setTimeout(function(){
+          el.fadeOut("fast",
+            function(){
+              $(this).remove();
+            });
+        }, 500);
+    }); 
+  updateScores();
+};
 
-}
+// clicking restart button restarts timer with old/current input and zeroes out the scores
 });

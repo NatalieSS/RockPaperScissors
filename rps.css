@@ -16,19 +16,23 @@ html, body {
   position: relative;
   top: 30px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   width: 100%;
 }
 
 .main h1 {
   font-weight: 600;
-  font-size: 70px;
+  font-size: 65px;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-transform: uppercase;
 }
 
-.btn-start {
+.time-input {
+  padding: 10px;
+}
+
+#btn-start {
   border-style: solid;
   border-width: 1px;
   border-color: #333333;
@@ -39,44 +43,37 @@ html, body {
   padding: 10px 20px;
   text-decoration: none;
   text-transform: uppercase;  
-  display: inline-block;
+  display: inline;
   margin: 0px 0px 20px 20px; 
-  background-color: #7DDA6A; 
+  background-color: #9AD78D; 
 }
 
-.active {
-  background-color: yellow;
+#btn-restart {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333333;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  text-transform: uppercase;  
+  display: inline;
+/*  margin: auto;*/
+  margin: 0px 0px 20px 20px; 
+/*  text-align: center;*/
+/*  position: relative;*/
+  background-color: #FF953D;
 }
 
 .timer-area {
   display: none;
   color: #333333;
-  font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 40px;
+  font-size: 30px;
   margin-top: 0;
   text-transform: uppercase;
-}
-
-/*.timer-area span {
-  width: 50%;
-}*/
-
-.btn-choose {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #333333;
-  border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 1.3px;
-  padding: 10px 20px;
-  text-decoration: none;
-  text-transform: uppercase;  
-  display: inline-block;
-  margin-bottom: 20px;  
-  background-color: white;    
 }
 
 .scores {
@@ -89,17 +86,15 @@ html, body {
   border-radius: 1px;
   border-color: #333333;
 }
+
 .scores ul {
   margin: 0 auto;
   padding: 0px;
-
 }
 
 .scores li {
   color: #333;
-  font-family: 'Raleway', sans-serif;
-  text-decoration: bold;
-  font-size: 80%;
+  font-size: 20;
   font-weight: 600;
   display: inline;
   float: left;
@@ -108,34 +103,39 @@ html, body {
 }
 
 .scores .w {
-  color: green;
+  color: #6FB560;
 }
 
 .scores .l {
-  color: red;
+  color: #F47811;
 }
 
 .scores .d {
-  color: blue;
+  color: #5494C6;
 }
 
-.supporting {
-  padding-top: 80px;
-  padding-bottom: 100px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-
-.supporting .col {
-  width: 50%;
-  text-align: center;
+.ten-sec {
+  display: none;
   margin: auto;
-  display: inline;
-  float: left;
+  margin-bottom: 20px;
+  background-color: red;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+  border-radius: 3px;
+  width: 200px;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  text-align: center;
+  padding: 10px;
+/*  padding: 10px 20px;
+  text-decoration: none;*/
+  text-transform: uppercase;  
 }
 
-.btn-restart {
+.btn-choose {
   border-style: solid;
   border-width: 1px;
   border-color: #333333;
@@ -146,14 +146,42 @@ html, body {
   padding: 10px 20px;
   text-decoration: none;
   text-transform: uppercase;  
-  display: block;
-  margin: auto;
-  top: 85px;
-  background-color: none; 
-  text-align: center;
-  position: relative;
-  background-color: #FDBDBD;
+  display: inline-block;
+  margin-bottom: 10px;  
+  background-color: white;
+  width: 130px;    
 }
+
+i {
+  padding-right: 10px;
+}
+
+.supporting {
+  padding-top: 40px;
+  padding-bottom: 100px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.supporting .col {
+  text-align: center;
+  margin: auto;
+  display: inline;
+  float: left;
+}
+
+.user-display {
+  width: 50%;
+}
+
+.bot-display {
+  width: 50%;
+}
+
+/*.bot-display {
+  margin-bottom: 10px;
+}*/
 
 .modal {
     display: none;
@@ -191,8 +219,80 @@ html, body {
     cursor: pointer;
 }
 
+@media (max-width: 726px) {
+  .top-btns {
+    display: block;
+    margin-top: 10px;
+  }
+
+  #btn-start {
+    margin: 5px 10px 10px 0px;
+    display: inline;
+  }
+
+  #btn-restart {
+    margin: 5px 0px 10px 0px;
+    display: inline;
+  }
+
+  .user-display {
+    width: 42%;
+  }
+
+  .bot-display {
+    width: 58%;
+  }
+}
+
 @media (max-width: 500px) {
   .main h1 {
-    font-size: 50px;
-    padding: 0 40px;
+    font-size: 40px;
+    padding: 0px 30px 0px 30px;
+    margin-bottom: 10px;
   }
+
+  .time-input {
+    padding: 3px;
+    display: block;
+  }
+
+  #btn-start {
+    margin: 10px 0px 10px 0px;
+    display: inline;
+  }
+
+/*  #btn-restart {
+    margin: 5px 0px 10px 0px;
+    display: inline;
+  }*/
+
+  .timer-area {
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .scores {
+    padding-top: 7px;
+    height: 25px;
+    width: 300px;
+  }
+
+  .ten-sec {
+    display: none;
+    margin: auto;
+    margin-bottom: 12px;
+  }
+
+  .supporting {
+    padding-top: 20px;
+  }
+
+/*  .user-display {
+    width: 42%;
+  }
+
+  .bot-display {
+    width: 58%;
+  }
+*/
+}
