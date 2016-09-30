@@ -77,7 +77,7 @@ $(".start-timer").submit(function(e) {
 
     // warn user with popup when 10 secs left
     if (minutes == 0 && seconds == 10) {
-      // *********************************************************************************** add modal warning for 10 sec
+      // *********************************************************************************** add warning div for 10 sec
     };
 
     // stop count down at 00:00 and display who won in a modal
