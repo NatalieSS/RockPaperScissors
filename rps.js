@@ -50,6 +50,7 @@ $(".start-timer").submit(function(e) {
 
   // begin countdown display: set time equal to whatever minutes and seconds user has entered
   $("#time-left").append(userMinNum + ":" + userSecNum);
+  $(".timer-area").css("display", "block");
   // ******************************** handle edge case of one-digit secs by prepending a 0 - at start and during countdown
 
   // start counting down
