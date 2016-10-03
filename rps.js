@@ -27,57 +27,12 @@ $(document).ready(function() {
       $(this).css("background-color", "white");
     });
 
-// clicking restart button restarts timer with old/current input and zeroes out the scores
-$("#btn-restart").click(function() {
-  userMinStr = document.getElementById("userMin").value;
-  userSecStr = document.getElementById("userSec").value;
+var timer = $("#time-left").html();
+var userMinStr = document.getElementById("userMin").value;
+var userSecStr = document.getElementById("userSec").value;
 
-  console.log(userMinStr, userSecStr);
- });
-
-// when user submits timer form, set the timer for that time and begin countdown
-// choices only become possible once countdown starts
-$("#start-timer").submit(function(e) {
-  // check to be sure user input is valid
-  userMinStr = document.getElementById("userMin").value;
-  userSecStr = document.getElementById("userSec").value;
-
-  if(userMinStr.length == 0 && userSecStr == 0){
-    alert("Please enter a value");
-  } else {
-    // convert min and sec to just sec
-    var numericExpression = /^[0-9]+$/;
-    if (!userMinStr.match(numericExpression) || !userSecStr.match(numericExpression)){
-      alert("Please enter a number for both minutes and seconds.")
-    } else {
-    var userMinNum = parseInt(userMinStr);
-    var userSecNum = parseInt(userSecStr);
-
-    // handle edge case of one-digit secs by prepending a 0
-    if (userSecNum < 10 && length.userSecNum != 2) {
-      userSecNum = "0" + userSecNum;
-    }
-
-    startTimeSec = (userMinNum * 60) + userSecNum;
-
-    var timerArr = [startTimeSec, userMinNum, userSecNum];
-    e.preventDefault();
-    }
-    }
-
-  // start button becomes unclickable unless page is refreshed, other buttons become clickable
-  document.getElementById("btn-start").disabled = true;
-  document.getElementById("rock").disabled = false;
-  document.getElementById("paper").disabled = false;
-  document.getElementById("scissors").disabled = false;
-  document.getElementById("btn-restart").disabled = false;
-
-  // begin countdown display: set time equal to whatever minutes and seconds user has entered
-  $("#time-left").append(userMinNum + ":" + userSecNum);
-  $(".timer-area").css("display", "block");
-
-  // start counting down
-  var interval = setInterval(function() {
+var interval = function() {
+  setInterval(function() {
     var timer = $("#time-left").html();
     timer = timer.split(":");
     var minutes = parseInt(timer[0], 10);
@@ -111,6 +66,7 @@ $("#start-timer").submit(function(e) {
     // stop count down at 00:00 and display who won in a modal
     if (minutes == 0 && seconds == 0) {
       clearInterval(interval);
+      $("#time-left").html("00:00");
 
       document.getElementById("rock").disabled = true;
       document.getElementById("paper").disabled = true;
@@ -131,11 +87,107 @@ $("#start-timer").submit(function(e) {
       $("#gameOverModal").css("display", "block");
 
       $(".close").click(function() {
+        $("#verdict").html("");
         $("#gameOverModal").css("display", "none");
       });
     }
-
 }, 1000);
+}
+
+// when user submits timer form, set the timer for that time and begin countdown
+// choices only become possible once countdown starts
+$("#start-timer").submit(function(e) {
+  // check to be sure user input is valid
+  userMinStr = document.getElementById("userMin").value;
+  userSecStr = document.getElementById("userSec").value;
+
+  if(userMinStr.length == 0 && userSecStr == 0){
+    alert("Please enter a value");
+  } else {
+    // convert min and sec to just sec
+    var numericExpression = /^[0-9]+$/;
+    if (!userMinStr.match(numericExpression) || !userSecStr.match(numericExpression)){
+      alert("Please enter a number for both minutes and seconds.")
+    } else {
+    var userMinNum = parseInt(userMinStr);
+    var userSecNum = parseInt(userSecStr);
+
+    // handle edge case of one-digit mins and/or secs by prepending a 0
+    if (userMinNum < 10 && length.userMinNum != 2) {
+      userMinNum = "0" + userMinNum;
+    }
+
+    if (userSecNum < 10 && length.userSecNum != 2) {
+      userSecNum = "0" + userSecNum;
+    }
+
+    startTimeSec = (userMinNum * 60) + userSecNum;
+
+    var timerArr = [startTimeSec, userMinNum, userSecNum];
+    e.preventDefault();
+    }
+    }
+
+  // start button becomes unclickable unless page is refreshed, other buttons become clickable
+  document.getElementById("btn-start").disabled = true;
+  document.getElementById("rock").disabled = false;
+  document.getElementById("paper").disabled = false;
+  document.getElementById("scissors").disabled = false;
+  document.getElementById("btn-restart").disabled = false;
+
+  // begin countdown display: set time equal to whatever minutes and seconds user has entered
+  $("#time-left").append(userMinNum + ":" + userSecNum);
+  $(".timer-area").css("display", "block");
+
+// start counting down
+interval();
+});
+
+$("#btn-restart").click(function() {
+  clearInterval(interval);
+
+  document.getElementById("rock").disabled = false;
+  document.getElementById("paper").disabled = false;
+  document.getElementById("scissors").disabled = false;
+
+  $("#wins").html(0);
+  $("#losses").html(0);
+  $("#draws").html(0);
+  var winCount = 0;
+  var lossCount = 0;
+  var drawCount = 0;
+
+console.log(userMinStr, userSecStr);
+  timer = "" + userMinStr + ":" + userSecStr + "";
+  timer = timer.split(":");
+  console.log(timer)
+    var minutes = parseInt(timer[0], 10);
+    var seconds = parseInt(timer[1], 10);
+    seconds -= 1;
+
+    if (minutes < 0) {
+      return clearInterval(interval);
+    };
+    if (minutes < 10 && minutes.length != 2) {
+      minutes = "0" + minutes;
+    };
+    if (seconds < 0 && minutes != 0) {
+        minutes -= 1;
+        seconds = 59;
+    } else if (seconds < 10 && length.seconds != 2) {
+      seconds = "0" + seconds;
+    }
+
+    $("#time-left").html(minutes + ":" + seconds);
+
+    // warn user with popup when 10 secs left
+    if (minutes == 0 && seconds == 10) {
+      $(".ten-sec").css("display", "block");
+      function hideTenSec(){
+        $(".ten-sec").css("display", "none");
+      }
+      setTimeout(hideTenSec, 1500);
+}
 });
 
 // when user chooses r, p, or s, change btn background color and set userChoice
@@ -160,10 +212,11 @@ var botChooses = function() {
   }
 
 // after bot chooses, update scores
+var winCount = $("#wins").html();
+var lossCount = $("#losses").html();
+var drawCount = $("#draws").html();
+
 var updateScores = function() {
-  var winCount = $("#wins").html();;
-  var lossCount = $("#losses").html();;
-  var drawCount = $("#draws").html();;
 
   if (userChoice == botChoice) {
     roundWinner = "Tie!"
